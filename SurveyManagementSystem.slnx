@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/SurveyManagementSystem.PL/">
     <Project Path="D:/Projects/SentientGeeks/SurveyManagementSystem/WebAPI/WebAPI.csproj" Id="07353e2a-465a-41cc-922f-618400db58d8" />
+    <Project Path="SMSWeb/SMSWeb.csproj" Id="723f9b64-44bc-4e33-8501-bc56f2fad06e" />
   </Folder>
   <Project Path="SurveyManagementSystem.BLL/SurveyManagementSystem.BLL.csproj" Id="95ef747a-f057-4347-b055-3a96d6dc0f44" />
   <Project Path="SurveyManagementSystem.Models/SurveyManagementSystem.DAL.csproj" />
