@@ -1,3 +1,7 @@
 <Solution>
-  <Project Path="SurveyManagementSystem.Models/SurveyManagementSystem.Models.csproj" />
+  <Folder Name="/SurveyManagementSystem.PL/">
+    <Project Path="D:/Projects/SentientGeeks/SurveyManagementSystem/WebAPI/WebAPI.csproj" Id="07353e2a-465a-41cc-922f-618400db58d8" />
+  </Folder>
+  <Project Path="SurveyManagementSystem.BLL/SurveyManagementSystem.BLL.csproj" Id="95ef747a-f057-4347-b055-3a96d6dc0f44" />
+  <Project Path="SurveyManagementSystem.Models/SurveyManagementSystem.DAL.csproj" />
 </Solution>
