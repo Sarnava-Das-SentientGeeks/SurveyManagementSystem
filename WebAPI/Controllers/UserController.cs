@@ -21,14 +21,14 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody] User userDTO)
         {
             var result = await _user.UpdateAsync(userDTO);
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _user.DeleteAsync(id);
