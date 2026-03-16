@@ -1,5 +1,5 @@
 ﻿@page
-@model MovieComponents.Pages.Movies.CreateModel
+@model SMSWeb.Pages.Users.CreateModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -15,32 +15,32 @@
                         <div asp-validation-summary="All"></div>
 
                         <div class="mb-3" style="width:50px">
-                             <label asp-for="@Model.MovieObj.Title" class="form-label">Title</label>
-                            <input asp-for="@Model.MovieObj.Title" class="form-control" />
-                            <span asp-validation-for="@Model.MovieObj.Title" class="text-danger"></span>
+                            <label asp-for="@Model.UserObj.Name" class="form-label">Title</label>
+                            <input asp-for="@Model.UserObj.Name" class="form-control" />
+                            <span asp-validation-for="@Model.UserObj.Name" class="text-danger"></span>
                         </div>
              
                           
                         <div class="mb-3">
-                            <label asp-for="MovieObj.ReleaseDate" class="form-label">Release Date</label>
-                             <input asp-for="MovieObj.ReleaseDate" class="form-control" />
-                             <span asp-validation-for="MovieObj.ReleaseDate" class="text-danger"></span>
+                            <label asp-for="UserObj.Address" class="form-label">Release Date</label>
+                            <input asp-for="UserObj.Address" class="form-control" />
+                            <span asp-validation-for="UserObj.Address" class="text-danger"></span>
                         </div>
                
 
               
                         <div class="mb-3">
-                            <label asp-for="@Model.MovieObj.Genre" class="form-label">Genre</label>
-                            <input asp-for="@Model.MovieObj.Genre" class="form-control" />
-                            <span asp-validation-for="@Model.MovieObj.Genre" class="text-danger"></span>
+                            <label asp-for="@Model.UserObj.Phone" class="form-label">Genre</label>
+                            <input asp-for="@Model.UserObj.Phone" class="form-control" />
+                            <span asp-validation-for="@Model.UserObj.Phone" class="text-danger"></span>
                         </div>
               
 
              
                         <div class="mb-3">
-                            <label asp-for="MovieObj.Price" class="form-label">Price</label>
-                            <input asp-for="MovieObj.Price" class="form-control" />
-                            <span asp-validation-for="MovieObj.Price" class="text-danger"></span>
+                            <label asp-for="UserObj.Role" class="form-label">Price</label>
+                            <input asp-for="UserObj.Role" class="form-control" />
+                            <span asp-validation-for="UserObj.Role" class="text-danger"></span>
                         </div>
 
                         <button type="submit" id="submitButton" class="btn btn-primary" >Save</button>

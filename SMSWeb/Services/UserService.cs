@@ -16,7 +16,7 @@ namespace SMSWeb.Services
                 {
                     var data = await _httpClient.PostAsJsonAsync("api/user", user);
                     var response = await data.Content.ReadFromJsonAsync<ServiceRespone>();
-                    return response;        
+                    return response;       
                 }
                 public async Task<ServiceRespone> UpdateAsync(User user)
                 {

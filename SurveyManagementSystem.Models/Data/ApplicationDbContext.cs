@@ -10,5 +10,7 @@ namespace SurveyManagementSystem.DAL.Data
 
         public DbSet<User> User { get; set; }
 
+       
+
     }
 }

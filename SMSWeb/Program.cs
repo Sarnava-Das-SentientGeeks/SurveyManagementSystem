@@ -9,7 +9,9 @@ builder.Services.AddRazorPages();
 
 //builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped(u => new HttpClient { BaseAddress = new Uri("https://localhost:7275") });
+builder.Services.AddScoped(u => new HttpClient { BaseAddress = new Uri("https://localhost:7275/") });
+
+
 
 var app = builder.Build();
 
