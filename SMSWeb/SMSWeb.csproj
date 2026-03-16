@@ -6,6 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\qtvl0ezv.eos~" />
+  </ItemGroup>
+
  
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagementSystem.BLL\SurveyManagementSystem.BLL.csproj" />
