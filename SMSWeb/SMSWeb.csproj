@@ -11,9 +11,4 @@
     <ProjectReference Include="..\SurveyManagementSystem.BLL\SurveyManagementSystem.BLL.csproj" />
   </ItemGroup>
 
- 
-  <ItemGroup>
-    <Folder Include="Pages\User\" />
-  </ItemGroup>
-
 </Project>

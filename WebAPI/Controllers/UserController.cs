@@ -4,6 +4,9 @@ using SurveyManagementSystem.DAL.Repositories;
 
 namespace WebAPI.Controllers
 {
+
+    [Route("api/[Controller]")]
+    [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IUser _user;

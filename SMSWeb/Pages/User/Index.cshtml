@@ -1,0 +1,106 @@
+﻿@page
+@model MovieComponents.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Movie List";
+}
+
+<partial name="_Notification"/>
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Movie List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-page="Create" class="btn btn-primary">
+                <i class="bi bi-plus-square-fill"></i>&nbsp; Add Movie
+            </a>
+        </div>
+    </div>
+
+    <br/></<br />
+
+    <table class="table table-bordered table-striped" style="max-width:100%">
+        <thead>
+            <tr>
+                @* <th>@Html.DisplayNameFor(Model => Model.MovieList[0].Title)</th> -This is used with IList<> or arrays since IEnumerable<> does not support indexing *@
+                <th>@Html.DisplayNameFor(Model=>Model.MovieList.First().Title)</th> 
+                <th>@Html.DisplayNameFor(Model=>Model.MovieList.First().ReleaseDate)</th>
+                <th>@Html.DisplayNameFor(Model=>Model.MovieList.First().Genre)</th>
+                <th>@Html.DisplayNameFor(Model => Model.MovieList.First().Price)</th>
+                @*It works even if the table in the database or MovieList object are empty since Razor only inspects the expression tree to get the property name i.e metadata and does not actually execute First() i.e access index 0 *@
+                <th></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach(var obj in Model.MovieList)
+            {
+                <tr>
+                  <td>@obj.Title</td>
+                  <td>@obj.ReleaseDate</td>
+                  <td>@obj.Genre</td>
+                  <td>@obj.Price</td>
+                  <td>
+                    <div class="w-75 btn-group" role="group"> 
+                            <a asp-page="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger mx-2" onclick="openModal(@obj.Id)" ><i class="bi bi-trash3-fill"></i> </a>
+                    </div>
+                   </td>
+                </tr>
+            }
+           
+        </tbody>
+    </table>
+</div>
+
+@* Rendering the Modal Component *@
+@await Component.InvokeAsync("Modal")
+
+@section Scripts{
+  @{
+        <partial name="_ValidationScriptsPartial"/>
+  }
+
+  <script>
+        function openModal(id){
+
+            //Since the Modal Component has already rendered so we have the DOM of the Modal Component but it is not displayed yet.
+            //Therefore we can set the value of the hidden input id="deleteId" in the Modal Component.
+            document.getElementById("deleteId").value = id;
+
+            var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+            modal.show();
+         }
+
+         async function confirmDelete(){
+          
+
+          //Getting the id which has to be deleted from the Modal Component 
+          var id = document.getElementById("deleteId").value;
+
+
+          // var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+          //Calling the OnPostDelete(int d) handler in the Delete.cshtml razor page
+          const respone = await fetch(`Movies/Delete?handler=Delete&id=${id}`,{
+                          method:"POST",
+                          // headers: {
+                          //       "RequestVerificationToken": token
+                          //   }
+                        });
+          
+          //This error messages are shown in the console tab after inspecting the webpage
+          if(respone.ok)
+             location.reload();
+          else
+             console.error("Deletion failed", response.status);
+
+       
+         }
+  </script>
+}
+
+
