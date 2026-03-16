@@ -1,4 +1,12 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿
 
-// Write your JavaScript code.
+function openEditModal(id) { 
+    fetch(`/Users/Index?handler=GetById&id=${id}`)
+        .then(response => response.text()) 
+        .then(html => {
+            document.getElementById("editContent").innerHTML = html;
+            var modal = new bootstrap.Modal(document.getElementById("editModal"));
+            modal.show();
+        })
+        .catch(err => console.error("Error loading modal:", err));
+}

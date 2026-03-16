@@ -1,7 +1,9 @@
 
 
 
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using SMSWeb.Services;
 using SurveyManagementSystem.BLL.Entities;  
 
@@ -16,15 +18,28 @@ namespace SMSWeb.Pages.Users
         
 
         public IEnumerable<User> UserList { get; set; } = default!;
-       
+
         public void OnGet()
         {
             UserList = _userService.GetAsync().Result;
             //UserList = await _userService.GetAsync();
         }
 
+        public async Task<User> GetByIdAsync(int id) => await _userService.GetByIdAsync(id);
 
 
+        public async Task<IActionResult> OnGetGetById(int id)
+        {
+
+            var user = await GetByIdAsync(id);
+
+            //This is used recommended for Razor pages but if MVC service is enabled then this will work too:return Partial("_EditView", user);
+            return new PartialViewResult
+            {
+                ViewName = "_EditView",
+                ViewData = new ViewDataDictionary<User>(ViewData, user)
+            };
+        }
 
     }
 }

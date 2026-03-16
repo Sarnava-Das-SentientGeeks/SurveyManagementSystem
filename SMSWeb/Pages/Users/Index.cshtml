@@ -5,7 +5,7 @@
     ViewData["Title"] = "User List";
 }
 
-@* <partial name="_Notification"/> *@
+
 
 
 <div class="container p-3">
@@ -45,7 +45,7 @@
                     <td>@obj.Role</td>
                   <td>
                     <div class="w-75 btn-group" role="group"> 
-                            <a asp-page="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-primary mx-2" onclick="openEditModal(@obj.Id)"><i class="bi bi-pencil">Edit</i></a>
                             <a class="btn btn-danger mx-2" onclick="openModal(@obj.Id)" ><i class="bi bi-trash3-fill"></i> </a>
                     </div>
                    </td>
@@ -56,51 +56,16 @@
     </table>
 </div>
 
-@* Rendering the Modal Component *@
-@* @await Component.InvokeAsync("Modal")
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" id="editContent"></div>
+    </div>
+</div>
 
 @section Scripts{
-  @{
-        <partial name="_ValidationScriptsPartial"/>
-  }
-
-  <script>
-        function openModal(id){
-
-            //Since the Modal Component has already rendered so we have the DOM of the Modal Component but it is not displayed yet.
-            //Therefore we can set the value of the hidden input id="deleteId" in the Modal Component.
-            document.getElementById("deleteId").value = id;
-
-            var modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-            modal.show();
-         }
-
-         async function confirmDelete(){
-          
-
-          //Getting the id which has to be deleted from the Modal Component 
-          var id = document.getElementById("deleteId").value;
 
 
-          // var token = document.querySelector('input[name="__RequestVerificationToken"]').value;
-
-          //Calling the OnPostDelete(int d) handler in the Delete.cshtml razor page
-          const respone = await fetch(`Movies/Delete?handler=Delete&id=${id}`,{
-                          method:"POST",
-                          // headers: {
-                          //       "RequestVerificationToken": token
-                          //   }
-                        });
-          
-          //This error messages are shown in the console tab after inspecting the webpage
-          if(respone.ok)
-             location.reload();
-          else
-             console.error("Deletion failed", response.status);
-
-       
-         }
-  </script>
-} *@
+  <script src = "/js/site.js"> </script>
+} 
 
 
