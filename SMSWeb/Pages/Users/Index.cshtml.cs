@@ -20,6 +20,7 @@ namespace SMSWeb.Pages.Users
         public void OnGet()
         {
             UserList = _userService.GetAsync().Result;
+            //UserList = await _userService.GetAsync();
         }
 
 
