@@ -29,7 +29,7 @@
                 <th>@Html.DisplayNameFor(Model=>Model.UserList.First().Name)</th> 
                 <th>@Html.DisplayNameFor(Model => Model.UserList.First().Address)</th>
                 <th>@Html.DisplayNameFor(Model => Model.UserList.First().Phone)</th>
-                <th>@Html.DisplayNameFor(Model => Model.UserList.First().Role)</th>
+             
               
                 <th></th>
             </tr>
@@ -42,7 +42,7 @@
                     <td>@obj.Name</td>
                     <td>@obj.Address</td>
                     <td>@obj.Phone</td>
-                    <td>@obj.Role</td>
+                  
                   <td>
                     <div class="w-75 btn-group" role="group"> 
                             <a class="btn btn-primary mx-2" onclick="openEditModal(@obj.Id)"><i class="bi bi-pencil">Edit</i></a>

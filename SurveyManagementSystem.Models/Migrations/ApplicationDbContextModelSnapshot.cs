@@ -51,26 +51,12 @@ namespace SurveyManagementSystem.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
-
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("SurveyManagementSystem.BLL.Entities.User", b =>
-                {
-                    b.HasOne("SurveyManagementSystem.BLL.Entities.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
-
-                    b.Navigation("Role");
                 });
 #pragma warning restore 612, 618
         }
