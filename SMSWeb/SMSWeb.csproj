@@ -10,9 +10,18 @@
     <Content Remove="wwwroot\css\qtvl0ezv.eos~" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Pages\Users\Create.cshtml~RF6073b04.TMP" />
+  </ItemGroup>
+
  
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagementSystem.BLL\SurveyManagementSystem.BLL.csproj" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <Folder Include="Pages\Roles\" />
   </ItemGroup>
 
 </Project>

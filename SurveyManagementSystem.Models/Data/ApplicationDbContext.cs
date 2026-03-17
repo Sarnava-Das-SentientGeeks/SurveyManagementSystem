@@ -11,14 +11,14 @@ namespace SurveyManagementSystem.DAL.Data
 
         public DbSet<User> User { get; set; }
 
-        public DbSet<Role> Role { get; set; }
+        //public DbSet<Role> Role { get; set; }
 
-        //public DbSet<UserRoles> UserRoles { get; set; }
+
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
-        //    modelBuilder.Entity<UserRoles>()
-        //        .HasKey(c => new { c.UserId, c.RoleId });
+        //   modelBuilder.Entity<User>()
+        //        .HasMany(e=>e.Users)
         //}
       
     }

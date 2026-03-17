@@ -23,18 +23,31 @@ function openCreateModal() {
 }
 
 
-//async function saveUser() {
-//    const user = {
-//        name: document.getElementById("Name"),
-//        address: document.getElementById("Addess"),
-//        phone: document.getElementById("Phone")
-//    };
+async function saveUser() {
+    const user = {
+        
+        name: document.getElementById("Name").value,
+        address: document.getElementById("Address").value,
+        phone: document.getElementById("Phone").value,
 
-//    const response = await fetch(`https://localhost:7275/api/users`), {
-//        method: "POST",
-//        headers: {"Content-type","" }
-//    }
-//}
+    };
+    try {
+
+        const response = await fetch(`https://localhost:7275/api/users`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(user),
+          
+        });
+
+        const result = await response.json();
+        console.log(result);
+      
+
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 async function updateUser(id) {
 
