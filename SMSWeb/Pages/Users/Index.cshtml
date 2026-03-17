@@ -14,10 +14,10 @@
             <h2 class="text-primary">User List</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-page="Create" class="btn btn-primary">
-                <i class="bi bi-plus-square-fill"></i>&nbsp; Add User
-            </a>
-        </div>
+            <a class="btn btn-primary" onclick="openCreateModal()"> 
+                <i class="bi bi-plus-square-fill"></i>&nbsp; Add User</a>
+           
+       </div>
     </div>
 
     <br/></<br />
@@ -59,6 +59,12 @@
 <div class="modal fade" id="editModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content" id="editContent"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="createModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" id="createContent"></div>
     </div>
 </div>
 

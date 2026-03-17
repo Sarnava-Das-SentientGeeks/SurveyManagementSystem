@@ -41,5 +41,15 @@ namespace SMSWeb.Pages.Users
             };
         }
 
+        public async Task<IActionResult> OnGetCreateModal()
+        {
+
+            return new ViewResult
+            {
+                ViewName = "Create",
+                ViewData = null
+            };
+        }
+
     }
 }

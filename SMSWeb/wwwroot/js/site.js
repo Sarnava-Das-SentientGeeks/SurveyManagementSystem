@@ -11,6 +11,31 @@ function openEditModal(id) {
         .catch(err => console.error("Error loading modal:", err));
 }
 
+function openCreateModal() {
+    fetch(`/Users/Index?handler=CreateModal`)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById("createContent").innerHTML = html;
+            var modal = new bootstrap.Modal(document.getElementById("createModal"));
+            modal.show();
+        })
+        .catch(err => console.log(err));
+}
+
+
+//async function saveUser() {
+//    const user = {
+//        name: document.getElementById("Name"),
+//        address: document.getElementById("Addess"),
+//        phone: document.getElementById("Phone")
+//    };
+
+//    const response = await fetch(`https://localhost:7275/api/users`), {
+//        method: "POST",
+//        headers: {"Content-type","" }
+//    }
+//}
+
 async function updateUser(id) {
 
     const user = {
@@ -18,7 +43,7 @@ async function updateUser(id) {
         name: document.getElementById("Name").value,
         address: document.getElementById("Address").value,
         phone: document.getElementById("Phone").value,
-        role: document.getElementById("Role").value
+       
     };
 
     try {
