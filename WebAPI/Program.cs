@@ -29,7 +29,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//builder.Services.AddTransient<IUser, UserRepository>();
+builder.Services.AddTransient<IRole, RoleRepository>();
 builder.Services.AddScoped<IUser, UserRepository>();
 
 var app = builder.Build();

@@ -33,7 +33,7 @@ namespace SurveyManagementSystem.DAL.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("RoleUser");
+                    b.ToTable("RoleUser", (string)null);
                 });
 
             modelBuilder.Entity("SurveyManagementSystem.BLL.Entities.Role", b =>
@@ -49,7 +49,7 @@ namespace SurveyManagementSystem.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
                 });
 
             modelBuilder.Entity("SurveyManagementSystem.BLL.Entities.User", b =>
@@ -71,7 +71,7 @@ namespace SurveyManagementSystem.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("RoleUser", b =>

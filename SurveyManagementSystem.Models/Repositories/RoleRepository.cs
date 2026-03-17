@@ -52,7 +52,7 @@ namespace SurveyManagementSystem.DAL.Repositories
 
         public async Task<Role> GetRoleById(int id) => await _Dbcontext.Role.FindAsync(id);
 
-        public async Task<List<Role>> GetRoles() => await _Dbcontext.Role.ToListAsync();
+        public async Task<List<Role>> GetRoles() => await _Dbcontext.Role.AsNoTracking().ToListAsync();
      
     }
 }
