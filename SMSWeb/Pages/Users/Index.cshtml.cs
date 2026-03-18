@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using SMSWeb.Services;
-using SurveyManagementSystem.BLL.Entities;  
+using SurveyManagementSystem.BLL.Entities;
+using SurveyManagementSystem.BLL.DTOs;
 
 
 namespace SMSWeb.Pages.Users
@@ -16,6 +17,9 @@ namespace SMSWeb.Pages.Users
         
 
         public IEnumerable<User> UserList { get; set; } = default!;
+
+        //Getting roles for users
+        public IEnumerable<RoleUserDTO> RoleList { get; set; } = default!;
 
         public void OnGet()
         {

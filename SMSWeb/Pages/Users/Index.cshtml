@@ -11,21 +11,21 @@
             <h2 class="text-primary">User List</h2>
         </div>
         <div class="col-6 text-end">
-            <a class="btn btn-primary" onclick="openCreateModal()"> 
-                <i class="bi bi-plus-square-fill"></i>&nbsp; Add User</a>
+            <a class="btn btn-outline-info text-white" onclick="openRoleModal"><i class="bi bi-plus-square-fill"></i>&nbsp;Roles</a>
            
        </div>
     </div>
 
     <br/></<br />
 
-    <table class="table table-bordered table-striped" style="max-width:100%">
-        <thead>
+    <table class="table table-striped table-hover table-borderless table-dark table-responsive-md" >
+        <thead class="table-primary">
             <tr>
             
                 <th>@Html.DisplayNameFor(Model => Model.UserList.First().Name)</th> 
                 <th>@Html.DisplayNameFor(Model => Model.UserList.First().Address)</th>
                 <th>@Html.DisplayNameFor(Model => Model.UserList.First().Phone)</th>
+               
              
               
                 <th></th>
@@ -35,15 +35,19 @@
         <tbody>
             @foreach(var obj in Model.UserList)
             {
-                <tr>
+                <tr >
                     <td>@obj.Name</td>
                     <td>@obj.Address</td>
                     <td>@obj.Phone</td>
                   
-                  <td>
-                    <div class="w-75 btn-group" role="group"> 
-                            <a class="btn btn-primary mx-2" onclick="openEditModal(@obj.Id)"><i class="bi bi-pencil">Edit</i></a>
-                            <a class="btn btn-danger mx-2" onclick="openModal(@obj.Id)" ><i class="bi bi-trash3-fill"></i> </a>
+                    <td style="width: 1px; white-space: nowrap;">
+                        @*class="p-0 small"  *@
+                    <div class="w-50 btn-group-sm" role="group"> 
+                            <a class="btn btn-success btn-sm mx-2" onclick="openCreateModal()"><i class="bi bi-plus-square-fill"></i></a>
+                            <a class="btn btn-info btn-sm mx-2" onclick="openEditModal(@obj.Id)"><i class="bi bi-pencil"></i></a>
+                            <a class="btn btn-danger btn-sm mx-2" onclick="openDeleteModal(@obj.Id)"><i class="bi bi-trash3-fill"></i> </a>
+
+                            
                     </div>
                    </td>
                 </tr>
@@ -64,6 +68,8 @@
         <div class="modal-content" id="createContent"></div>
     </div>
 </div>
+
+@await Component.InvokeAsync("Modal");
 
 @section Scripts{
   <script src = "/js/site.js"> </script>

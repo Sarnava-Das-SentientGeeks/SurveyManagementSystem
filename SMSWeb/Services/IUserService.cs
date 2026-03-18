@@ -11,6 +11,8 @@ namespace SMSWeb.Services
 
         public Task<List<User>> GetAsync();
 
+        //public Task<List<RoleUserDTO>> GetRolesAsync();
+
         public Task<User> GetByIdAsync(int id);
     }
 }

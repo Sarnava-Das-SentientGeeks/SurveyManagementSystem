@@ -22,6 +22,18 @@ function openCreateModal() {
         .catch(err => console.log(err));
 }
 
+function openDeleteModal(id) {
+    document.getElementById("deleteId").value = id;
+    var modal = new bootstrap.Modal(document.getElementById("deleteModal"));
+    modal.show();
+}
+
+function confirmDelete(){
+    var id = document.getElementById("deleteId").value;
+    const response = fetch(`/api/users`)
+
+}
+
 
 async function saveUser() {
     const user = {
