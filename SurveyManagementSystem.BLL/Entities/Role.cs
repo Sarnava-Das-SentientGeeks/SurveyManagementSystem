@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public string? Name { get; set; }
 
-        public IList<User> Users { get; } = [];
+        public IList<User> Users { get; } = []; //For N-M relationship between Users-Roles
 
 
     }

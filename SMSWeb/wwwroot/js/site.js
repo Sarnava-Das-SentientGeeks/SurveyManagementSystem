@@ -1,5 +1,4 @@
-﻿
-function openEditModal(id) { 
+﻿function openEditModal(id) { 
     fetch(`/Users/Index?handler=GetById&id=${id}`)
         .then(response => response.text()) 
         .then(html => {
@@ -39,7 +38,7 @@ async function confirmDelete() {
     });
 
     //const result = await response.json();
-        console.log(response);
+     console.log(response);
   
 
     //fetch('https://example.com/delete-item/' + id, {

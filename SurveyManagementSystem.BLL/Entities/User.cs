@@ -5,17 +5,14 @@ namespace SurveyManagementSystem.BLL.Entities
     public class User
     {
         public int Id { get; set; }
-
-
-        public string? Name { get; set; }
-
-  
+        public string? Name { get; set; }  
         public string? Address { get; set; }
-
-
         public string? Phone { get; set; }
+        public IList<Role> Roles { get; } = []; //For N-M relationship between User-Roles
 
-        public IList<Role> Roles { get; } = [];
+        public IList<Survey> Surveys { get; } = []; //For N-M relationship between User-Surveys
+
+        public ICollection<Response> Responses { get; } = new List<Response>(); //1-N relationship between User-Response
 
     }
 }
