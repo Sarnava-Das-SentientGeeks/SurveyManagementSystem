@@ -11,8 +11,8 @@ using SurveyManagementSystem.DAL.Data;
 namespace SurveyManagementSystem.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260318123518_SurveySchema")]
-    partial class SurveySchema
+    [Migration("20260318133258_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -228,13 +228,13 @@ namespace SurveyManagementSystem.DAL.Migrations
                     b.HasOne("SurveyManagementSystem.BLL.Entities.Questions", "Questions")
                         .WithMany("Answers")
                         .HasForeignKey("QuestionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SurveyManagementSystem.BLL.Entities.Response", "Response")
                         .WithMany("Answers")
                         .HasForeignKey("ResponseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Questions");
@@ -269,7 +269,7 @@ namespace SurveyManagementSystem.DAL.Migrations
                     b.HasOne("SurveyManagementSystem.BLL.Entities.Survey", "Survey")
                         .WithMany("Responses")
                         .HasForeignKey("SurveyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SurveyManagementSystem.BLL.Entities.User", "User")

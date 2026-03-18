@@ -31,18 +31,20 @@ namespace SurveyManagementSystem.DAL.Data
                 .WithOne(e => e.User)
                 .HasForeignKey(e => e.UserId)
                 .IsRequired();
-///////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////
             modelBuilder.Entity<Survey>()
                 .HasMany(e => e.Questions)
                 .WithOne(e => e.Survey)
                 .HasForeignKey(e => e.SurveyId)
                 .IsRequired();
+                //.OnDelete(DeleteBehavior.Restrict);//Breaking cascade path
 
             modelBuilder.Entity<Survey>()
                .HasMany(e => e.Responses)
                .WithOne(e => e.Survey)
                .HasForeignKey(e => e.SurveyId)
-               .IsRequired();
+               .IsRequired()
+               .OnDelete(DeleteBehavior.Restrict);//Breaking cascade path
             ////////////////////////////////////////////////////////////////
             modelBuilder.Entity<Questions>()
                 .HasMany(e => e.Answers)
@@ -64,7 +66,7 @@ namespace SurveyManagementSystem.DAL.Data
              .WithOne(e => e.Response)
              .HasForeignKey(e => e.ResponseId)
              .IsRequired()
-             .OnDelete(DeleteBehavior.NoAction); //Breaking cascade path
+             .OnDelete(DeleteBehavior.Restrict); //Breaking cascade path
 
 
 

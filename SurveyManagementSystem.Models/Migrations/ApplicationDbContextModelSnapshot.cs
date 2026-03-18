@@ -231,7 +231,7 @@ namespace SurveyManagementSystem.DAL.Migrations
                     b.HasOne("SurveyManagementSystem.BLL.Entities.Response", "Response")
                         .WithMany("Answers")
                         .HasForeignKey("ResponseId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Questions");
@@ -266,7 +266,7 @@ namespace SurveyManagementSystem.DAL.Migrations
                     b.HasOne("SurveyManagementSystem.BLL.Entities.Survey", "Survey")
                         .WithMany("Responses")
                         .HasForeignKey("SurveyId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SurveyManagementSystem.BLL.Entities.User", "User")
