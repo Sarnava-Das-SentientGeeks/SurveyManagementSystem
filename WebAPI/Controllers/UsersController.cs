@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SurveyManagementSystem.BLL.DTOs;
 using SurveyManagementSystem.BLL.Entities;
 using SurveyManagementSystem.DAL.Repositories;
 
@@ -29,6 +30,7 @@ namespace WebAPI.Controllers
         {
             var result = await _user.UpdateAsync(userDTO);
             return Ok(result);
+            
         }
 
         [HttpDelete("{id}")]

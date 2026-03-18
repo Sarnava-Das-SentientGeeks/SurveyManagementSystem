@@ -1,5 +1,4 @@
 ﻿
-
 function openEditModal(id) { 
     fetch(`/Users/Index?handler=GetById&id=${id}`)
         .then(response => response.text()) 
@@ -22,15 +21,34 @@ function openCreateModal() {
         .catch(err => console.log(err));
 }
 
-function openDeleteModal(id) {
-    document.getElementById("deleteId").value = id;
-    var modal = new bootstrap.Modal(document.getElementById("deleteModal"));
-    modal.show();
+async function openDeleteModal(id) {
+   document.getElementById("deleteId").value = id;
+    var modal = await new bootstrap.Modal(document.getElementById("deleteModal"));
+     modal.show();
 }
 
-function confirmDelete(){
+async function confirmDelete() {
+    const data = { id: document.getElementById("deleteId").value };
     var id = document.getElementById("deleteId").value;
-    const response = fetch(`/api/users`)
+
+
+    const response = fetch(`https://localhost:7275/api/users/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    //const result = await response.json();
+        console.log(response);
+  
+
+    //fetch('https://example.com/delete-item/' + id, {
+    //    method: 'DELETE',
+    //})
+    //    .then(res => res.text()) // or res.json()
+    //    .then(res => console.log(res))
+
+
 
 }
 
