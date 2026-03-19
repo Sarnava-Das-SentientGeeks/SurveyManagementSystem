@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+
+<form>
+    <div class="modal-header">
+        <h5 class="modal-title">Add Role</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    </div>
+
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input class="form-control" id="Name" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Summary</label>
+            <input class="form-control" id="Summary" />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="submitButton" onclick="saveRole()">Save</button>
+        <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+      
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+
+}

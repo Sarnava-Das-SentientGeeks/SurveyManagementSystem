@@ -14,6 +14,11 @@
     <None Remove="Pages\Users\Create.cshtml~RF6073b04.TMP" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\js\role.js" />
+    <None Include="wwwroot\js\user.js" />
+  </ItemGroup>
+
  
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagementSystem.BLL\SurveyManagementSystem.BLL.csproj" />

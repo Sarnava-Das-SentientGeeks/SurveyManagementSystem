@@ -35,7 +35,7 @@ namespace SMSWeb.Pages.Users
 
             var user = await GetByIdAsync(id);
 
-            //This is used recommended for Razor pages but if MVC service is enabled then this will work too:return Partial("_EditView", user);
+            //This is recommended for Razor pages but if MVC service is enabled then this will work too:return Partial("_EditView", user);
             return new PartialViewResult
             {
                 ViewName = "_EditView",

@@ -11,7 +11,7 @@
             <h2 class="text-primary">Role List</h2>
         </div>
         <div class="col-6 text-end">
-            <a class="btn btn-primary" onclick="openCreateRoleModal()"><i class="bi bi-plus-square-fill"></i>&nbsp;Roles</a>
+            <a class="btn btn-primary" onclick="openCreateModal()"><i class="bi bi-plus-square-fill"></i>&nbsp;Roles</a>
                
         </div>
     </div>
@@ -55,6 +55,8 @@
            
         </tbody>
     </table>
+
+    @await Component.InvokeAsync("Modal")
 </div>
 
 <div class="modal fade" id="editModal" tabindex="-1">
@@ -69,10 +71,11 @@
     </div>
 </div>
 
-@await Component.InvokeAsync("Modal")
+
 
 @section Scripts {
     <script src="/js/site.js"> </script>
+    <script src="/js/role.js"> </script>
 }
 
 
