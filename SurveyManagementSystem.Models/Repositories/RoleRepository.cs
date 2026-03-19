@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using SurveyManagementSystem.BLL.DTOs;
 using SurveyManagementSystem.BLL.Entities;
 using SurveyManagementSystem.DAL.Data;

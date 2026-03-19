@@ -7,9 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-//builder.Services.AddTransient<IUserService, UserService>();
+
+//builder.Services.AddTransient<IRoleService, RoleService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped(u => new HttpClient { BaseAddress = new Uri("https://localhost:7275/") });
+builder.Services.AddScoped(u => new HttpClient { BaseAddress = new Uri("https://localhost:7275") });
 
 
 
