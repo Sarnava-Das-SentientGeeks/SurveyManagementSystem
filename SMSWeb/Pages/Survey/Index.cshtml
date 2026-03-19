@@ -1,0 +1,53 @@
+﻿@page
+@model SMSWeb.Pages.Survey.IndexModel
+@{
+}
+
+<div class="container pt-3">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h2 class="text-primary">Create Survey</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a class="btn btn-info " onclick="openRoleModal()"><i class="bi bi-plus-square-fill"></i>&nbsp;Create Survey</a>
+           
+           
+        </div>
+    </div>
+</div>
+
+    <br /></<br />
+    <div class="container pt-3">
+        <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <input class="form-control" value="Untitled Form" />
+                        </div>
+
+                        <div class="card-body">
+                            <input class="form-control" value="Form Description" />
+                        </div>
+                    </div>
+                </div>
+
+     
+                <div class="col-md-6" id="questionContainer">
+                    @await Component.InvokeAsync("Questioncard")
+                </div>
+         </div>
+    </div>
+    
+
+</div>
+
+
+
+
+
+
+
+
+
+
+   

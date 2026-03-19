@@ -12,7 +12,8 @@
             <h2 class="text-primary">User List</h2>
         </div>
         <div class="col-6 text-end">
-            <a class="btn btn-outline-info text-white" onclick="openRoleModal"><i class="bi bi-plus-square-fill"></i>&nbsp;Roles</a>
+            <a class="btn btn-info " onclick="openRoleModal()"><i class="bi bi-plus-square-fill"></i>&nbsp;Roles</a>
+            <a class="btn btn-info" onclick="openCreateModal()"><i class="bi bi-plus-square-fill"></i>&nbsp;Users</a>
            
        </div>
     </div>
@@ -44,7 +45,7 @@
                     <td style="width: 1px; white-space: nowrap;">
                         @*class="p-0 small"  *@
                     <div class="w-50 btn-group-sm" role="group"> 
-                            <a class="btn btn-success btn-sm mx-2" onclick="openCreateModal()"><i class="bi bi-plus-square-fill"></i></a>
+                        
                             <a class="btn btn-info btn-sm mx-2" onclick="openEditModal(@obj.Id)"><i class="bi bi-pencil"></i></a>
                             <a class="btn btn-danger btn-sm mx-2" onclick="openDeleteModal(@obj.Id)"><i class="bi bi-trash3-fill"></i> </a>
 
@@ -75,5 +76,6 @@
 @section Scripts{
   <script src = "/js/site.js"> </script>
 } 
+
 
 
