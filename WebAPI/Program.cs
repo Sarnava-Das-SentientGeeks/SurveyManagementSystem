@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using SurveyManagementSystem.BLL.Mappings;
 using SurveyManagementSystem.DAL.Data;
 using SurveyManagementSystem.DAL.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
+
+//Added mapping services from entity to DTOs
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile(typeof(UserMapperProfile));
+});
 
 
 //Added service for CORS
@@ -23,7 +31,7 @@ builder.Services.AddCors(options =>
 });
 
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Added service for api json file at https://localhost:7275/openapi/v1.json
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using SurveyManagementSystem.BLL.DTOs;
 using SurveyManagementSystem.BLL.Entities;
 using SurveyManagementSystem.DAL.Repositories;
@@ -11,24 +12,36 @@ namespace WebAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUser _user;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUser user)
+        public UsersController(IUser user, IMapper _mapper)
         {
             this._user = user;
+            this._mapper = _mapper;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] User userDTO)
+        public async Task<IActionResult> Create([FromBody] UserDTO userDTO)
         {
-            var result = await _user.CreateAsync(userDTO);
-            return Ok(result);
+            //Mapping manually
+            //var data = new User
+            //{
+            //    Name = userDTO.Name,
+            //    Address = userDTO.Address,
+            //};
+            
+           var userEntity = _mapper.Map<User>(userDTO); //mapping userDTO to userEntity
+           var result = await _user.CreateAsync(userEntity);
+           return Ok(result);
 
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] User userDTO)
+        public async Task<IActionResult> Update([FromBody] UserDTO userDTO)
         {
-            var result = await _user.UpdateAsync(userDTO);
+
+            var userEntity = _mapper.Map<User>(userDTO);
+            var result = await _user.UpdateAsync(userEntity);
             return Ok(result);
             
         }
