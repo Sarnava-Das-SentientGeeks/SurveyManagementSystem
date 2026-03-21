@@ -41,7 +41,8 @@ namespace SurveyManagementSystem.DAL.Repositories
         }
         public async Task<ServiceRespone> UpdateAsync(User user, IList<int> roleIds)
         {
-            if(roleIds != null && roleIds.Any())
+            user.Roles.Clear();//clearing old roles of the corresponding user to be updated
+            if (roleIds != null && roleIds.Any())
             {
                 var roles = await _Dbcontext.Role
                                 .Where(r => roleIds.Contains(r.Id))
@@ -70,13 +71,10 @@ namespace SurveyManagementSystem.DAL.Repositories
         public async Task<List<User>> GetAsync() => await _Dbcontext.User.AsNoTracking().ToListAsync();
 
 
-        public async Task<User> GetByIdAsync(int id)
-        {
+        public async Task<User> GetByIdAsync(int id) => await _Dbcontext.User.FindAsync(id);
+        
 
-            return await _Dbcontext.User.FindAsync(id);
-        }
-
-        //Roles of corresponding users
+        //Get all roles of corresponding users
         public async Task<Dictionary<int, List<RoleDTO>>> GetUserRolesAsync()
         {
             //return await _Dbcontext.User
@@ -102,6 +100,18 @@ namespace SurveyManagementSystem.DAL.Repositories
                 );
            
 
+        }
+
+        public async Task<List<RoleDTO>> GetRolesByIdAsync(int id)
+        {
+            return await _Dbcontext.User
+                            .Where(u => u.Id == id)
+                            .SelectMany(u => u.Roles)
+                            .Select(r => new RoleDTO
+                            {
+                                Id = r.Id,
+                                Name = r.Name
+                            }).ToListAsync();
         }
     }
 }

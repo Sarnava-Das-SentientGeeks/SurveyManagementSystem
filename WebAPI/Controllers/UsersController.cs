@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UserDTO userDTO)
         {
-
+            
             var userEntity = _mapper.Map<User>(userDTO);
             var result = await _user.UpdateAsync(userEntity,userDTO.Roles);
             return Ok(result);
@@ -74,6 +74,15 @@ namespace WebAPI.Controllers
             var data = await _user.GetUserRolesAsync();
             return Ok(data);
         }
+
+
+        [HttpGet("roles/{id}")]
+        public async Task<IActionResult> GetRolesById(int id)
+        {
+            var data = await _user.GetRolesByIdAsync(id);
+            return Ok(data);
+        }
+          
 
 
     }

@@ -14,5 +14,6 @@ namespace SurveyManagementSystem.DAL.Repositories
         public Task<User> GetByIdAsync(int id);
 
         public Task<Dictionary<int, List<RoleDTO>>> GetUserRolesAsync();
+        public Task<List<RoleDTO>> GetRolesByIdAsync(int id);
     }
 }

@@ -13,13 +13,13 @@ namespace SMSWeb.Services
                 {
                     this._httpClient = httpClient;
                 }
-                public async Task<ServiceRespone> CreateAsync(User user)
+                public async Task<ServiceRespone> CreateAsync(UserDTO user)
                 {
                     var data = await _httpClient.PostAsJsonAsync(route, user);
                     var response = await data.Content.ReadFromJsonAsync<ServiceRespone>();
                     return response;       
                 }
-                public async Task<ServiceRespone> UpdateAsync(User user)
+                public async Task<ServiceRespone> UpdateAsync(UserDTO user)
                 {
                     var data = await _httpClient.PutAsJsonAsync(route, user);
                     var response = await data.Content.ReadFromJsonAsync<ServiceRespone>();
@@ -48,6 +48,12 @@ namespace SMSWeb.Services
                 {
                         
                         var data = await _httpClient.GetFromJsonAsync<Dictionary<int, List<RoleDTO>>>(route+"/roles");
+                        return data;
+                }
+
+                public async Task<List<RoleDTO>> GetRolesByIdAsync(int id)
+                {
+                        var data = await _httpClient.GetFromJsonAsync<List<RoleDTO>>(route + $"/roles/{id}");
                         return data;
                 }
 

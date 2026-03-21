@@ -22,7 +22,8 @@ namespace SMSWeb.Pages.Users
 
         public IEnumerable<User> UserList { get; set; } = default!;
 
-        public IEnumerable<Role> RoleList { get; set; } 
+        public IEnumerable<Role> RoleList { get; set; }
+
         public Dictionary<int,List<RoleDTO>> UserRoleList { get; set; }
 
         public async Task OnGet()
@@ -30,6 +31,8 @@ namespace SMSWeb.Pages.Users
     
             UserList = _userService.GetAsync().Result;
             UserRoleList = await _userService.GetUserRolesAsync();
+
+          
 
 
             //This gives all roles of all users
@@ -52,7 +55,7 @@ namespace SMSWeb.Pages.Users
 
         public async Task<IActionResult> OnGetGetById(int id)
         {
-
+            ViewData["RoleList"] = await roleService.GetRoles();
             var user = await GetByIdAsync(id);
 
             //This is recommended for Razor pages but if MVC service is enabled then this will work too:return Partial("_EditView", user);

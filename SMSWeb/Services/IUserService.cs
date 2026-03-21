@@ -5,8 +5,8 @@ namespace SMSWeb.Services
     public interface IUserService
     {
 
-        public Task<ServiceRespone> CreateAsync(User user);
-        public Task<ServiceRespone> UpdateAsync(User user);
+        public Task<ServiceRespone> CreateAsync(UserDTO user);
+        public Task<ServiceRespone> UpdateAsync(UserDTO user);
         public Task<ServiceRespone> DeleteAsync(int id);
 
         public Task<List<User>> GetAsync();
@@ -16,6 +16,8 @@ namespace SMSWeb.Services
         public Task<User> GetByIdAsync(int id);
 
         public Task<Dictionary<int, List<RoleDTO>>> GetUserRolesAsync();
+
+        public Task<List<RoleDTO>> GetRolesByIdAsync(int id);
 
 
     }

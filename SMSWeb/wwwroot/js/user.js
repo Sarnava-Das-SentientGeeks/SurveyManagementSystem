@@ -48,12 +48,12 @@ async function confirmDelete() {
 
 
         if (response.ok) {
-            sessionStorage.setItem("showToastr", "User added successfully");
+            sessionStorage.setItem("showToastr", "User deleted successfully");
             window.location.href = `/Users/Index/`;
 
         }
         else {
-            sessionStorage.setItem("showToastr", result.message);
+            sessionStorage.setItem("showToastr", result.message || "User deletion failed");
             window.location.href = `/Users/Index/`;
         }
 
@@ -136,6 +136,7 @@ async function updateUser(id) {
         name: document.getElementById("Name").value,
         address: document.getElementById("Address").value,
         phone: document.getElementById("Phone").value,
+        roles: [parseInt(document.getElementById("Roles").value)]
 
     };
 
@@ -152,7 +153,7 @@ async function updateUser(id) {
 
 
         if (response.ok) {
-            sessionStorage.setItem("showToastr", "User added successfully");
+            sessionStorage.setItem("showToastr", "User updated successfully");
             window.location.href = `/Users/Index/`;
         }
         else {
