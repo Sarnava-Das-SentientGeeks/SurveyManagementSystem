@@ -78,6 +78,7 @@ async function saveUser() {
         name: document.getElementById("Name").value,
         address: document.getElementById("Address").value,
         phone: document.getElementById("Phone").value,
+        roles: [parseInt(document.getElementById("Roles").value)]
 
     };
     try {

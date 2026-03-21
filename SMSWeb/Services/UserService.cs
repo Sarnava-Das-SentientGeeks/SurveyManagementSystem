@@ -36,20 +36,24 @@ namespace SMSWeb.Services
 
                 public async Task<List<User>> GetAsync() => await _httpClient.GetFromJsonAsync<List<User>>(route);
 
-                //public async Task<List<RoleUserDTO>> GetRolesAsync()
-                //{ 
-                //    var data = await _httpClient.Get
-                    
-                //}
-  
+          
 
                 public async Task<User> GetByIdAsync(int id)
-                 {
+                {
                             var data = await _httpClient.GetFromJsonAsync<User>(route + $"/{id}");
                             return data;
                 }
 
+                public async Task<Dictionary<int, List<RoleDTO>>> GetUserRolesAsync()
+                {
+                        
+                        var data = await _httpClient.GetFromJsonAsync<Dictionary<int, List<RoleDTO>>>(route+"/roles");
+                        return data;
+                }
 
-        }
+
+
+
+    }
 }
 

@@ -17,6 +17,8 @@ namespace SurveyManagementSystem.DAL.Data
 
         public DbSet<Questions> Questions { get; set; }
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //1)Survey → Questions → Answers

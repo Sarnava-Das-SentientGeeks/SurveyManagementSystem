@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using SMSWeb.Services;
+
 using SurveyManagementSystem.BLL.Entities;
+using SurveyManagementSystem.BLL.DTOs;
 
 
 
@@ -12,19 +14,37 @@ namespace SMSWeb.Pages.Users
     public class IndexModel : PageModel
     {
         private readonly IUserService _userService;
+        private readonly IRoleService roleService;
+    
 
-        public IndexModel(IUserService userService)=>_userService = userService;
+        public IndexModel(IUserService userService, IRoleService roleService) { _userService = userService; this.roleService = roleService;  } 
         
 
         public IEnumerable<User> UserList { get; set; } = default!;
 
-        //Getting roles for users
-        //public IEnumerable<RoleUserDTO> RoleList { get; set; } = default!;
+        public IEnumerable<Role> RoleList { get; set; } 
+        public Dictionary<int,List<RoleDTO>> UserRoleList { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
+    
             UserList = _userService.GetAsync().Result;
-            //UserList = await _userService.GetAsync();
+            UserRoleList = await _userService.GetUserRolesAsync();
+
+
+            //This gives all roles of all users
+            //RoleList = await _context.Users
+            //           .SelectMany(u => u.Roles)
+            //           .ToListAsync();
+
+
+            //This gives roles of each user
+            //var users = await _context.Users
+            //    .Include(u => u.Roles)
+            //    .ToListAsync();
+            //foreach (var user in users)
+            //      var roles = user.Roles; // each user’s roles
+
         }
 
         public async Task<User> GetByIdAsync(int id) => await _userService.GetByIdAsync(id);
@@ -45,11 +65,14 @@ namespace SMSWeb.Pages.Users
 
         public async Task<IActionResult> OnGetCreateModal()
         {
+            RoleList = await roleService.GetRoles();
+
+            ViewData["RoleList"] = RoleList;
 
             return new ViewResult
             {
                 ViewName = "Create",
-                ViewData = null
+                ViewData = ViewData
             };
         }
 

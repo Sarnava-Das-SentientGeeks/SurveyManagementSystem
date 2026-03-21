@@ -11,7 +11,7 @@ namespace SurveyManagementSystem.BLL.DTOs
 
         public string? Phone { get; set; }
 
-        //public IList<Role> Roles { get; set; } = [];
-       
+        public IList<int> Roles { get; set; } = [];
+
     }
 }

@@ -29,9 +29,9 @@ namespace WebAPI.Controllers
             //    Name = userDTO.Name,
             //    Address = userDTO.Address,
             //};
-            
-           var userEntity = _mapper.Map<User>(userDTO); //mapping userDTO to userEntity
-           var result = await _user.CreateAsync(userEntity);
+
+           var userEntity = _mapper.Map<User>(userDTO);//mapping userDTO to userEntity               
+           var result = await _user.CreateAsync(userEntity, userDTO.Roles);
            return Ok(result);
 
         }
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
         {
 
             var userEntity = _mapper.Map<User>(userDTO);
-            var result = await _user.UpdateAsync(userEntity);
+            var result = await _user.UpdateAsync(userEntity,userDTO.Roles);
             return Ok(result);
             
         }
@@ -66,5 +66,15 @@ namespace WebAPI.Controllers
             var data = await _user.GetByIdAsync(id);
             return Ok(data);
         }
+
+        [HttpGet("roles")]
+        public async Task<IActionResult> GetUserRoles()
+        {
+            
+            var data = await _user.GetUserRolesAsync();
+            return Ok(data);
+        }
+
+
     }
 }

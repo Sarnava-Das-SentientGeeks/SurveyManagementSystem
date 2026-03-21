@@ -16,6 +16,7 @@ builder.Services.AddControllers();
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile(typeof(UserMapperProfile));
+    cfg.AddProfile(typeof(RoleMapperProfile));
 });
 
 

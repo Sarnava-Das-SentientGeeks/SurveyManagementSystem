@@ -1,6 +1,7 @@
-﻿
+﻿@using SurveyManagementSystem.BLL.Entities
 @{
-Layout= null;
+    Layout= null;
+    var RoleList = ViewData["RoleList"] as IEnumerable<Role>;
 }
            
    <form>
@@ -31,6 +32,12 @@ Layout= null;
                     <input  class="form-control" id="Phone" />
                     <span  class="text-danger"></span>
                 </div>
+
+                <div class="mb-3">
+                   <select id="Roles" asp-items="@(new SelectList(RoleList, "Id", "Name"))" class="form-select">
+                       <option value="" selected disabled>Select Role</option>
+                   </select>
+                </div>
         </div>
 
         <div class="modal-footer">                  
@@ -44,13 +51,8 @@ Layout= null;
 
 
 @section Scripts{
-    @{
-      
+    @{     
         <partial name="_ValidationScriptsPartial"/>
-        // <script src="/js/user.js"> </script>
-
     }
-
-
 }
 

@@ -39,8 +39,8 @@ async function openDeleteModal(id) {
 //Save Role function//
 async function saveRole() {
     const role = {
-        name: document.getElementById("Name"),
-        summary: document.getElementById("Summary")
+        name: document.getElementById("Name").value,
+        summary: document.getElementById("Summary").value
     };
     try {
         const response = await fetch(`https://localhost:7275/api/roles`, {

@@ -10,9 +10,13 @@ namespace SMSWeb.Services
         public Task<ServiceRespone> DeleteAsync(int id);
 
         public Task<List<User>> GetAsync();
+             
 
-        //public Task<List<RoleUserDTO>> GetRolesAsync();
 
         public Task<User> GetByIdAsync(int id);
+
+        public Task<Dictionary<int, List<RoleDTO>>> GetUserRolesAsync();
+
+
     }
 }
