@@ -24,4 +24,9 @@
     <ProjectReference Include="..\SurveyManagementSystem.BLL\SurveyManagementSystem.BLL.csproj" />
   </ItemGroup>
 
+ 
+  <ItemGroup>
+    <Folder Include="Pages\Components\Radiobuttons\" />
+  </ItemGroup>
+
 </Project>

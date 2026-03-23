@@ -8,19 +8,4 @@ $(document).ready(function () {
 
 
 
- function addQuestion() {
-     const template = document.getElementById("questionContainer");
-     const clone = template.firstElementChild.cloneNode(true);
-
-
-     if (clone)
-         template.appendChild(clone);
-
-     //else
-     //    document.querySelector(".card").style.display = "block";
-
  
-}
-
-
-

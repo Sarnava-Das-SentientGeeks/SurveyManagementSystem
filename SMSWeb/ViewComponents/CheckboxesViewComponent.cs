@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 namespace SMSWeb.ViewComponents
 {
-    public class ModalViewComponent : ViewComponent
+    public class CheckboxesViewComponent : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
-            return View("Modal"); //Here the default path is /Components/Modal/
+            return View("CheckBoxes");
         }
     }
 }

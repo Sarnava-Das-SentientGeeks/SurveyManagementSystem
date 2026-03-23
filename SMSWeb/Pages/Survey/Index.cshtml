@@ -5,13 +5,14 @@
 
 <div class="container pt-3">
     <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-md-6">
             <h2 class="text-primary">Create Survey</h2>
         </div>
         <div class="col-md-6 text-end">
-            <a class="btn btn-info " onclick="openRoleModal()"><i class="bi bi-plus-square-fill"></i>&nbsp;Create Survey</a>
-           
-           
+            <a class="btn btn-primary" onclick="openRoleModal()"><i class="bi bi-plus-square-fill"></i>&nbsp;Publish</a>
+            <a class="btn btn-info" onclick="openPreview()"><i class="bi bi-eye-fill"></i></a>
+            <a class="btn btn-info" onclick="shareLink()"><i class="bi bi-link-45deg"></i></a>
+          
         </div>
     </div>
 </div>
@@ -20,7 +21,7 @@
     <div class="container pt-3">
         <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <div class="card mb-3">
+                    <div class="card mb-3" id="metadata">
                         <div class="card-header">
                             <input class="form-control" value="Untitled Form" />
                         </div>
@@ -32,22 +33,31 @@
                 </div>
 
      
-                <div class="col-md-6" id="questionContainer" style="overflow-x:auto;">
+                <div class="col-md-8" id="questionContainer" style="overflow-y:auto;max-height:400px">
                     @await Component.InvokeAsync("Questioncard")
                 </div>
          </div>
     </div>
-    
 
+    <div class="modal fade" tabindex="-1" id="preview" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Preview Mode</h5>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal" onclick="$('#previewBody').empty()"></button>
+                </div>
 
+                <div class="modal-body" id="previewBody"></div>
 
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="$('#previewBody').empty()">Okay</button>
+                </div>
 
+            </div>
+        </div>            
+    </div>
 
-
-
-
-
-
-
-
-   
+@section Scripts {
+    <script src="/js/survey.js"></script>
+}
+ 

@@ -5,7 +5,7 @@ namespace SMSWeb.ViewComponents
     {
         public IViewComponentResult Invoke()
         {
-            return View("Default");
+            return View("QuestionCard");
         }
     }
 }
