@@ -21,16 +21,17 @@ builder.Services.AddAutoMapper(cfg =>
 
 
 //Added service for CORS
+
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowUI", policy =>
+    options.AddPolicy("AllowRazorAngular", policy =>
     {
-        policy.WithOrigins("https://localhost:7264")
+        policy.WithOrigins("http://localhost:4200", "https://localhost:7264")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
-
 
 // Added service for api json file at https://localhost:7275/openapi/v1.json
 builder.Services.AddOpenApi();
@@ -57,11 +58,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 //allowing UI to access the Web API i.e using CORS service that is registered
-app.UseCors("AllowUI");
+app.UseCors("AllowRazorAngular");
+
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
 
