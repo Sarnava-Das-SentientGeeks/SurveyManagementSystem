@@ -37,7 +37,17 @@
                                         <li class="nav-item">
                                              <a class="nav-link" asp-page="/Survey/Index">Survey</a>
                                         </li>
-                                       
+                                        <li class="nav-item dropdown mr-2">
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                         @if (User.Identity.IsAuthenticated) { <span>Welcome @User.Identity.Name</span> }
+                                         else { <span>Account</span> }
+                                        </a>
+                                              <div class="dropdown-menu" data-bs-popper="static">
+                                                    <partial name="_LoginStatusPartial" />
+                                                   <div class="dropdown-divider"></div>
+                                                   <a class="dropdown-item" href="#">Separated link</a>
+                                              </div>
+                                        </li>
                                        
                                         @* <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -54,6 +64,12 @@
                                         <input class="form-control me-sm-2" type="search" placeholder="Search">
                                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                                     </form> *@
+
+                                    
+                                    
+                                    @*  <div class="mr-2">
+                                       <partial name="_LoginStatusPartial"/>
+                                    </div> *@
                                 </div>
                             </div>
                         </nav>         
