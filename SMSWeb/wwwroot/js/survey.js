@@ -1,68 +1,150 @@
-﻿$(document).on("change", ".question-type", function () {
-    let container = $(this).closest(".question-card").find("#checkboxContainer");
+﻿//Gloabl JSON object
+const survey = {
+    title: "Untitled Form",
+    description: "Form Description",
+    questions: []
+};
 
-    if ($(this).val() == "3") {
-        container.removeAttr("hidden").show();
-    }
-    else {
-        container.hide();
-    }
+//rendering UI when DOM is ready
+$(document).ready(function () {
+    survey.questions.push({
+        id: Date.now(),
+        type: "text",
+        label: "Question",
+        options: []
+    });
+
+    renderUI();
 });
 
+function renderUI() {
+    $("#metadataContainer").html(`
+        <div class = "card mb-3">
+            <div class = "card-header">
+                <input class="form-control survey-title mb-2" value="${survey.title}" />
+            </div>
+            <div class = "card-body">
+               <input class="form-control survey-description mb-2" value="${survey.description}" />
+            </div>
+        </div>
+    `);
 
-let counter = 0;
-//function addQuestion(btn) -receives the btn
-function addQuestion(id) {
-
-    //const card = $(btn).closest(".question-card"); -getting the question-card which is calling the function
-    const newCard = $(".question-card").first().clone();
-
-    counter++;
-    newCard.attr("id", "question-card-" + counter);
-    newCard.find(".question-input").attr("id", "question-input-" + counter);
-    newCard.find(".question-type").attr("id", "question-type-" + counter);
-
-
-    //clear values
-    newCard.find("input").val("Question");
-    newCard.find("select").val("");  
-
-    //$("#questionContainer").append(newCard); -appends at the end of the last element of the container always
-    $("#"+id).after(newCard);
-
-    //const template = document.getElementById("questionContainer");
-    //const clone = template.firstElementChild.cloneNode(true);
-    //if (clone)
-    //    template.appendChild(clone);
-    //else
-    //    document.querySelector(".card").style.display = "block";
+    renderQuestions();
 
 }
 
-function openPreview()
-{
-    //This clears only the contents of the div and does not remove the div completely using .remove()
-    $("#previewBody").empty(); 
+function renderQuestions() {
+    let html = "";
 
-    //.end() ensures that the find() selector reverts back to the cloned #metadata object before it is appended, ensuring the whole container is added, not just the inputs.
-    $("#previewBody").append($("#metadata").clone().removeAttr("id").find("input").prop("readonly", true).end()); 
+    survey.questions.forEach((q, index) => {
+        html += `
+        <div class="card border-secondary mb-3 question-card" data-index="${index}">
+            <div class="card-body">
 
-    const questions = $("#questionContainer").clone().removeAttr("id");//removing id of the cloned elements to avoid conflict
-    questions.find("div").removeAttr("id");
+                <div class="row">
+                    <div class="col-6">
+                        <input class="form-control question-input" value="${q.label}" />
+                    </div>
 
-    //questions.find("select").each(function (index) {
-    //    $(this).val($("#questionContainer").find("select").eq(index).val());
-    //});
+                    <div class="col-6">
+                        <select class="form-select question-type">
+                            <option value="text" ${q.type === "text" ? "selected" : ""}>Short text</option>
+                            <option value="radio" ${q.type === "radio" ? "selected" : ""}>Multiple Choice</option>
+                            <option value="checkbox" ${q.type === "checkbox" ? "selected" : ""}>Checkboxes</option>
+                        </select>
+                    </div>
+                </div>
 
-    questions.find("input").prop("readonly", true);
-    questions.find("select").hide();
-    questions.find("button").hide();
+                <div class="mt-3 option-container" ${q.type === "text" ? "hidden" : ""}>
+                    ${renderOptions(q)}
+                </div>
 
-    $("#previewBody").append(questions.addClass("w-100")); //.css("width", "100%")
+                <button onclick="addQuestionAt(${index})"><i class="bi bi-plus-circle-fill"></i></button>
+                <button onclick="deleteQuestion(${index})"><i class="bi bi-trash-fill"></i></button>
 
-    const modal = new bootstrap.Modal($("#preview"));
-    modal.show();
+            </div>
+        </div>`;
+    });
+
+    $("#questionContainer").html(html);
 }
 
 
+function renderOptions(q, qIndex) {
+    if (!q.options) return "";
 
+    return q.options.map((opt, optIndex) => `
+        <div class="d-flex mb-2 align-items-center">
+            <input type="${q.type === "radio" ? "radio" : "checkbox"}" disabled class="me-2"/>
+
+            <input type="text" 
+                   class="form-control option-input"
+                   value="${opt}"
+                   data-qindex="${qIndex}"
+                   data-optindex="${optIndex}" />
+
+            <button class="btn btn-sm btn-danger ms-2"
+                    onclick="deleteOption(${qIndex}, ${optIndex})">
+                ✖
+            </button>
+        </div>
+    `).join("") +
+
+        `<button class="btn btn-sm btn-primary mt-2" onclick="addOption(${qIndex})">
+        <i class="bi bi-plus-circle-fill"></i> Add Option
+     </button>`;
+}
+
+function addQuestionAt(index) {
+    survey.questions.splice(index + 1, 0, {
+        id: Date.now(),
+        type: "text",
+        label: "New Question",
+        options: []
+    });
+
+    renderQuestions();
+}
+
+function deleteQuestion(index) {
+    survey.questions.splice(index, 1);
+
+    // Prevent empty form (optional but recommended)
+    if (survey.questions.length === 0) {
+        survey.questions.push({
+            id: Date.now(),
+            type: "text",
+            label: "Question",
+            options: []
+        });
+    }
+
+    renderQuestions();
+}
+
+
+$(document).on("input", ".survey-title", function () {
+    survey.title = this.value;
+});
+
+$(document).on("input", ".survey-description", function () {
+    survey.description = this.value;
+});
+
+$(document).on("change", ".question-type", function () {
+    const index = $(this).closest(".question-card").data("index");
+    const type = $(this).val();
+
+    survey.questions[index].type = type;
+
+    // Initialize options when needed
+    if (type === "radio" || type === "checkbox") {
+        if (!survey.questions[index].options || survey.questions[index].options.length === 0) {
+            survey.questions[index].options = ["Option 1"];
+        }
+    } else {
+        survey.questions[index].options = [];
+    }
+
+    renderQuestions();
+});
