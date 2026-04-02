@@ -1,10 +1,26 @@
 
-
 using SMSWeb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
+builder.Services.AddAuthentication().AddCookie("MyCookieAuth", (options) =>
+{
+    options.Cookie.Name = "MyCookieAuth";
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly",
+        policy => policy.RequireClaim("Admin"));
+
+    options.AddPolicy("MustBelongToAdmin",
+        policy => policy.RequireClaim("Role", "Admin"));
+});
+
+
+
 builder.Services.AddRazorPages();
 
 
@@ -28,7 +44,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
